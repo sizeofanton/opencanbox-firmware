@@ -1,0 +1,153 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="OpenCanBoxFirmware" target="8" version="2">
+  <project Name="OpenCanBoxFirmware">
+    <configuration
+      CMSIS_CORE="Yes"
+      LIBRARY_IO_TYPE="RTT"
+      Name="Common"
+      Target="LPC1764"
+      arm_architecture="v7M"
+      arm_compiler_variant="SEGGER"
+      arm_core_type="Cortex-M3"
+      arm_endian="Little"
+      arm_fpu_type="None"
+      arm_linker_heap_size="0"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="2048"
+      arm_linker_variant="SEGGER"
+      arm_rtl_variant="SEGGER"
+      arm_simulator_memory_simulation_parameter="ROM;0x00000000;0x00020000;RAM;0x10000000;0x00004000;RAM;0x2007C000;0x00004000"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_device_name="LPC1764"
+      arm_target_interface_type="SWD"
+      c_preprocessor_definitions="LPC175x_6x;__LPC1700_FAMILY;__LPC176x_SUBFAMILY;ARM_MATH_CM3"
+      c_user_include_directories="$(ProjectDir)/LPC1700/CMSIS/Device/Include"
+      debug_register_definition_file="$(ProjectDir)/LPC176x5x_Registers.xml"
+      debug_stack_pointer_start="__stack_end__"
+      debug_target_connection="J-Link"
+      gcc_entry_point="Reset_Handler"
+      link_linker_script_file="$(ProjectDir)/LPC1700_Flash_Variant2.icf"
+      linker_memory_map_file="$(ProjectDir)/LPC1764_MemoryMap.xml"
+      linker_output_format="bin"
+      macros="DeviceHeaderFile=$(PackagesDir)/LPC1700/CMSIS/Device/Include/LPC17xx.h;DeviceLibraryIdentifier=M3l;DeviceSystemFile=$(PackagesDir)/LPC1700/CMSIS/Device/Source/system_LPC17xx.c;DeviceVectorsFile=$(PackagesDir)/LPC1700/Source/LPC176x5x_Vectors.s;DeviceFamily=LPC1700;DeviceSubFamily=LPC176x;Target=LPC1764"
+      project_dependencies=""
+      project_directory=""
+      project_type="Executable"
+      target_reset_script="Reset();"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <folder Name="CMSIS Files">
+      <file file_name="LPC1700/CMSIS/Device/Include/LPC17xx.h" />
+      <file file_name="LPC1700/CMSIS/Device/Source/system_LPC17xx.c">
+        <configuration
+          Name="Common"
+          default_code_section=".init"
+          default_const_section=".init_rodata" />
+      </file>
+    </folder>
+    <folder Name="Script Files">
+      <file file_name="LPC1700/Scripts/LPC1700_Target.js">
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+    </folder>
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <folder Name="hal">
+        <folder Name="abstract">
+          <file file_name="source/hal/abstract/abstract_can.h" />
+          <file file_name="source/hal/abstract/abstract_led.h" />
+          <file file_name="source/hal/abstract/abstract_timer.h" />
+          <file file_name="source/hal/abstract/abstract_uart.h" />
+          <file file_name="source/hal/abstract/abstract_watchdog_timer.h" />
+        </folder>
+        <folder Name="can">
+          <file file_name="source/hal/can/can.cpp" />
+          <file file_name="source/hal/can/can.h" />
+        </folder>
+        <folder Name="led">
+          <file file_name="source/hal/led/led.cpp" />
+          <file file_name="source/hal/led/led.h" />
+        </folder>
+        <folder Name="system_tick_timer">
+          <file file_name="source/hal/system_tick_timer/system_tick_timer.cpp" />
+          <file file_name="source/hal/system_tick_timer/system_tick_timer.h" />
+        </folder>
+        <folder Name="uart">
+          <file file_name="source/hal/uart/uart.cpp" />
+          <file file_name="source/hal/uart/uart.h" />
+        </folder>
+        <folder Name="watchdog_timer">
+          <file file_name="source/hal/watchdog_timer/watchdog_timer.cpp" />
+          <file file_name="source/hal/watchdog_timer/watchdog_timer.h" />
+        </folder>
+      </folder>
+      <folder Name="util">
+        <folder Name="crc8">
+          <file file_name="source/util/crc8/crc8.cpp" />
+          <file file_name="source/util/crc8/crc8.h" />
+        </folder>
+        <folder Name="md4">
+          <file file_name="source/util/md4/md4.c" />
+          <file file_name="source/util/md4/md4.h" />
+        </folder>
+        <file file_name="source/util/bit_operations.h" />
+      </folder>
+      <folder Name="data">
+        <folder Name="can_msg">
+          <file file_name="source/data/can_msg/can_msg.cpp" />
+          <file file_name="source/data/can_msg/can_msg.h" />
+        </folder>
+        <folder Name="ring_buffer">
+          <file file_name="source/data/ring_buffer/ring_buffer.cpp" />
+          <file file_name="source/data/ring_buffer/ring_buffer.h" />
+        </folder>
+        <folder Name="rx_table">
+          <file file_name="source/data/rx_table/rx_table.hpp" />
+          <file file_name="source/data/rx_table/rx_table.cpp" />
+        </folder>
+        <folder Name="tx_table">
+          <file file_name="source/data/tx_table/tx_table.cpp" />
+          <file file_name="source/data/tx_table/tx_table.h" />
+        </folder>
+        <folder Name="uart_protocol">
+          <file file_name="source/data/uart_protocol/uart_protocol.cpp" />
+          <file file_name="source/data/uart_protocol/uart_protocol.h" />
+        </folder>
+        <file file_name="source/data/can_bitrate.h" />
+      </folder>
+      <file file_name="source/config.h" />
+      <file file_name="source/main.cpp" />
+      <file file_name="source/main.h" />
+    </folder>
+    <folder Name="System Files">
+      <file file_name="SEGGER_THUMB_Startup.s" />
+      <file file_name="LPC1700/Source/LPC1700_Startup.s" />
+      <file file_name="LPC1700/Source/LPC176x5x_Vectors.s">
+        <configuration Name="Common" file_type="Assembly" />
+      </file>
+    </folder>
+    <configuration
+      Name="Debug"
+      STLport="No"
+      arm_assembler_variant="gcc"
+      arm_compiler_variant="gcc"
+      debug_type_file="$(StudioDir)/bin/STLport.xml"
+      embOS2Proj="No"
+      gcc_cplusplus_language_standard="gnu++11" />
+    <configuration
+      Name="Release"
+      arm_assembler_variant="clang"
+      arm_compiler_variant="clang" />
+    <file file_name=".gitignore" />
+  </project>
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_optimization_level="None" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 2"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="Level 2 balanced" />
+</solution>

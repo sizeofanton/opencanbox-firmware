@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "arm_c_cpp_properties",
+            "compilerPath": "/Applications/ARM/bin/arm-none-eabi-g++",
+            "includePath": [
+				"/Users/antonsizov/Library/SEGGER/SEGGER Embedded Studio/v3/packages/CMSIS_5/CMSIS/Core/Include/",
+				"${workspaceRoot}/**",
+                "/usr/local/Cellar/googletest/1.11.0/include",
+                "/usr/local/include"
+            ],
+            "defines": [
+				"LPC175x_6x",
+                "__LPC1700_FAMILY",
+                "__LPC176x_SUBFAMILY",
+                "ARM_MATH_CM3"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+			"intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

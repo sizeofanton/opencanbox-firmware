@@ -1,0 +1,5 @@
+#define get_bit_mask(bit) ((uint32_t)1 << bit)
+#define is_bit_cleared(x, bit)  ((x & get_bit_mask(bit)) == 0u)
+#define is_bit_set(x, bit) ((x & get_bit_mask(bit)) != 0u)
+#define bit_clear(x, bit) (x &= ~get_bit_mask(bit))
+#define bit_set(x, bit) (x |= get_bit_mask(bit))

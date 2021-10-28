@@ -1,0 +1,6 @@
+<!DOCTYPE Board_Memory_Definition_File>
+<root name="LPC1764">
+  <MemorySegment name="FLASH1" start="0x00000000" size="0x00020000" access="ReadOnly" />
+  <MemorySegment name="RAM1" start="0x10000000" size="0x00004000" access="Read/Write" />
+  <MemorySegment name="RAM2" start="0x2007C000" size="0x00004000" access="Read/Write" />
+</root>
