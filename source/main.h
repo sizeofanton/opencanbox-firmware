@@ -32,8 +32,8 @@ Led ledCan2(Led::LED_CAN2);
 Led ledCan2Err(Led::LED_CAN2_ERROR); 
 SystemTickTimer systemTickTimer;
 Uart uart(Config::UART_BAUDRATE);
-Can can1(Can::CAN1, _5kbit);
-Can can2(Can::CAN2, _5kbit);
+Can can1(Can::CAN1, _100kbit);
+Can can2(Can::CAN2, _100kbit);
 WatchdogTimer watchdogTimer;
 UartProtocol uartProtocol;
 

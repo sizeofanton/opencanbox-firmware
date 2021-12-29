@@ -1,6 +1,5 @@
 #pragma once
 enum BaudRate {
-  _5kbit        = 1u,
   _10kbit       = 2u,
   _20kbit       = 3u,
   _50kbit       = 4u,
@@ -11,13 +10,6 @@ enum BaudRate {
   _1000kbit     = 9u,
   BAUD_UNKNOWN  = 0u
 };
-
-#define BITRATE_5_BRP    180
-#define BITRATE_5_SJW    0
-#define BITRATE_5_TSEG1  15
-#define BITRATE_5_TSEG2  7
-#define BITRATE_5_SAM    1
-#define BITRATE_5_BTR (BITRATE_5_SAM<<23)|(BITRATE_5_TSEG2<<20)|(BITRATE_5_TSEG1<<16)|(BITRATE_5_SJW<<14)|BITRATE_5_BRP 
 
 #define BITRATE_10_BRP    92
 #define BITRATE_10_SJW    0

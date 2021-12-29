@@ -97,7 +97,6 @@ inline bool Can::canTxBuf3Available() {
 
 void Can::setBaudRate(BaudRate br) {
   switch (br) {
-    case _5kbit: can->BTR = BITRATE_5_BTR; break;
     case _10kbit: can->BTR = BITRATE_10_BTR; break;
     case _20kbit: can->BTR = BITRATE_20_BTR; break;
     case _50kbit: can->BTR = BITRATE_50_BTR; break;
