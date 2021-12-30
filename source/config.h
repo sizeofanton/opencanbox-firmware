@@ -9,13 +9,11 @@
 // OpenCANBox 1-M
 #define OPEN_CAN_BOX_2
 
-#define DEBUG 
-
 class Config {
   public:
     static const int        HARDWARE_CODE   = 1;
-    static const int        VERSION_CODE    = 1;
-    static constexpr char*  VERSION_NAME    = "0.1";
+    static const int        VERSION_CODE    = 2;
+    static constexpr char*  VERSION_NAME    = "0.2";
     static const int        CHANNELS_NUMBER = 2;
 
     static const int        UART_BAUDRATE               = 115200;

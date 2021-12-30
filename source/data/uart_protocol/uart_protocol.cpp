@@ -9,7 +9,7 @@ uint32_t UartProtocol::msgRxCan(uint8_t channel, CanMsg msg, uint32_t period,  u
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_RX_CAN;
+  buffer[size++] = OutputMsgType::RxCan;
   buffer[size++] = channel;
   buffer[size++] = (msg.id >> 8);
   buffer[size++] = msg.id;
@@ -38,7 +38,7 @@ uint32_t UartProtocol::msgDeviceInfo(uint8_t hardwareVersion, uint16_t firmwareV
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_DEVICE_INFO;
+  buffer[size++] = OutputMsgType::DeviceInfo;
   
   buffer[size++] = hardwareVersion;
   buffer[size++] = firmwareVersion >> 8;
@@ -60,7 +60,7 @@ uint32_t UartProtocol::msgDataOverrunWarning(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_WARNING_DATA_OVERRUN;
+  buffer[size++] = OutputMsgType::WarningDataOverrun;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -80,7 +80,7 @@ uint32_t UartProtocol::msgPassiveError(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_ERROR_PASSIVE;
+  buffer[size++] = OutputMsgType::ErrorPassive;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -99,7 +99,7 @@ uint32_t UartProtocol::msgArbitrationLost(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_ARBITRATION_LOST;
+  buffer[size++] = OutputMsgType::ArbitrationLost;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -118,7 +118,7 @@ uint32_t UartProtocol::msgBusError(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_BUS_ERROR;
+  buffer[size++] = OutputMsgType::BusError;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -138,7 +138,7 @@ uint32_t UartProtocol::msgTxTableFull(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_TX_TABLE_FULL;
+  buffer[size++] = OutputMsgType::TxTableFull;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -157,7 +157,7 @@ uint32_t UartProtocol::msgRxTableFull(uint8_t channel, uint8_t *&res) {
   buffer[size++] = HEADER_BYTES[2];
   buffer[size++] = HEADER_BYTES[3];
 
-  buffer[size++] = MSG_RX_TABLE_FULL;
+  buffer[size++] = OutputMsgType::RxTableFull;
   buffer[size++] = channel;
 
   uint8_t crc = crc8.calculate(0, &buffer[0], size);
@@ -177,37 +177,37 @@ bool UartProtocol::validateHeader(uint8_t *header) {
 
 uint8_t UartProtocol::validateMsgType(uint8_t msgType, uint32_t *payloadSize) {
   switch (msgType) {
-    case INFO_REQUEST: {
+    case InputMsgType::InfoRequest: {
       *payloadSize = INFO_REQUEST_PAYLOAD;
-      return (uint8_t) INFO_REQUEST; break;
+      return (uint8_t) InputMsgType::InfoRequest; break;
     }
-    case DEVICE_DEACTIVATION: {
+    case InputMsgType::DeviceDeactivation: {
       *payloadSize = DEVICE_DEACTIVATION_PAYLOAD;
-      return (uint8_t) DEVICE_DEACTIVATION; break;
+      return (uint8_t) InputMsgType::DeviceDeactivation; break;
     }
-    case SINGLE_MESSAGE: {
+    case InputMsgType::SingleMessage: {
       *payloadSize = SINGLE_MESSAGE_PAYLOAD;
-      return (uint8_t) SINGLE_MESSAGE; break;
+      return (uint8_t) InputMsgType::DeviceDeactivation; break;
     }
-    case PEREODIC_MESSAGE: {
+    case InputMsgType::PereodicMessage: {
       *payloadSize = PEREODIC_MESSAGE_PAYLOAD;
-      return (uint8_t) PEREODIC_MESSAGE; break;
+      return (uint8_t) InputMsgType::PereodicMessage; break;
     }
-    case PEREODIC_MESSAGE_DELETE: {
+    case InputMsgType::PereodicMessageDelete: {
       *payloadSize = PEREODIC_MESSAGE_DELETE_PAYLOAD;
-      return (uint8_t) PEREODIC_MESSAGE_DELETE; break;
+      return (uint8_t) InputMsgType::PereodicMessageDelete; break;
     }
-    case PEREODIC_MESSAGE_EDIT: {
+    case InputMsgType::PereodicMessageEdit: {
       *payloadSize = PEREODIC_MESSAGE_EDIT_PAYLOAD; 
-      return (uint8_t) PEREODIC_MESSAGE_EDIT; break;
+      return (uint8_t) InputMsgType::PereodicMessageEdit; break;
     }
-    case SET_CHANNEL_BITRATE: {
+    case InputMsgType::SetChannelBitrate: {
       *payloadSize = SET_CHANNEL_BITRATE_PAYLOAD;
-      return (uint8_t) SET_CHANNEL_BITRATE; break;
+      return (uint8_t) InputMsgType::SetChannelBitrate; break;
     }
-    case SET_CHANNEL_FILTER: {
+    case InputMsgType::SetChannelFilter: {
       *payloadSize = SET_CHANNEL_FILTER_PAYLOAD; 
-      return (uint8_t) SET_CHANNEL_FILTER; break;
+      return (uint8_t) InputMsgType::SetChannelFilter; break;
     }
     default: {
       *payloadSize = 0;
@@ -278,42 +278,42 @@ void UartProtocol::readPayload() {
 void UartProtocol::parseMessage() {
   switch(msgType) {
 
-    case INFO_REQUEST: {
+    case InputMsgType::InfoRequest: {
       handleInfoRequest();
       break;
     }
 
-    case DEVICE_DEACTIVATION: {
+    case InputMsgType::DeviceDeactivation: {
       handleDeviceDeactivation();
       break;
     }
 
-    case SINGLE_MESSAGE: {
+    case InputMsgType::SingleMessage: {
       handleSingleMessage();
       break;
     }
 
-    case PEREODIC_MESSAGE: {
+    case InputMsgType::PereodicMessage: {
       handlePereodicMessage();
       break;
     }
 
-    case PEREODIC_MESSAGE_DELETE: {
+    case InputMsgType::PereodicMessageDelete: {
       handlePereodicMessageDelete();
       break;
     }
 
-    case PEREODIC_MESSAGE_EDIT: {
+    case InputMsgType::PereodicMessageEdit: {
       handlePereodicMessageEdit();
       break;
     }
 
-    case SET_CHANNEL_BITRATE: {
+    case InputMsgType::SetChannelBitrate: {
       handleSetChannelBitrate();
       break;
     }
 
-    case SET_CHANNEL_FILTER: {
+    case InputMsgType::SetChannelFilter: {
       handleSetChannelFilter();
       break;
     }

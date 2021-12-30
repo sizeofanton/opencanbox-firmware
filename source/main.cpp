@@ -189,6 +189,10 @@ void uartRoutine() {
   }
 }
 
+void systemReset() {
+  NVIC_SystemReset();
+}
+
 extern "C" void UartProtocolCallback_InfoRequest() {
   uint8_t *dataPointer = nullptr;
   auto size = uartProtocol.msgDeviceInfo(config.HARDWARE_CODE, config.VERSION_CODE, config.CHANNELS_NUMBER, dataPointer);
@@ -196,8 +200,7 @@ extern "C" void UartProtocolCallback_InfoRequest() {
 }
 
 extern "C" void UartProtocolCallback_DeviceDeactivation() {
-  watchdogTimer.start(10);
-  _delay_ms(10);
+  systemReset();
 }
 
 extern "C" void UartProtocolCallback_SingleMessage(CanMsg msg, uint8_t channelId) {

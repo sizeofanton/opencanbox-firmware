@@ -125,7 +125,9 @@
     <configuration
       Name="Release"
       arm_assembler_variant="clang"
-      arm_compiler_variant="clang" />
+      arm_compiler_variant="clang"
+      gcc_c_language_standard="c11"
+      gcc_cplusplus_language_standard="c++11" />
     <file file_name=".gitignore" />
   </project>
   <configuration

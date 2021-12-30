@@ -20,28 +20,28 @@ class UartProtocol
 {
 
   public:
-    enum INPUT_MSG_TYPE 
+    enum InputMsgType 
     {
-      UNKNOWN                 = 0,
-      INFO_REQUEST            = 1,
-      DEVICE_DEACTIVATION     = 2,
-      SINGLE_MESSAGE          = 3,
-      PEREODIC_MESSAGE        = 4,
-      PEREODIC_MESSAGE_DELETE = 5,
-      PEREODIC_MESSAGE_EDIT   = 6,
-      SET_CHANNEL_BITRATE     = 7,
-      SET_CHANNEL_FILTER      = 8
+      Unknown                 = 0,
+      InfoRequest             = 1,
+      DeviceDeactivation      = 2,
+      SingleMessage           = 3,
+      PereodicMessage         = 4,
+      PereodicMessageDelete   = 5,
+      PereodicMessageEdit     = 6,
+      SetChannelBitrate       = 7,
+      SetChannelFilter        = 8
     };
 
-    enum OUTPUT_MSG_TYPE {
-      MSG_RX_CAN                = 1, 
-      MSG_WARNING_DATA_OVERRUN  = 2,
-      MSG_ERROR_PASSIVE         = 3,
-      MSG_ARBITRATION_LOST      = 4,
-      MSG_BUS_ERROR             = 5,
-      MSG_DEVICE_INFO           = 6,
-      MSG_TX_TABLE_FULL         = 7,
-      MSG_RX_TABLE_FULL         = 8
+    enum OutputMsgType {
+      RxCan                     = 1, 
+      WarningDataOverrun        = 2,
+      ErrorPassive              = 3,
+      ArbitrationLost           = 4,
+      BusError                  = 5,
+      DeviceInfo                = 6,
+      TxTableFull               = 7,
+      RxTableFull               = 8
     };
 
     uint32_t msgRxCan(uint8_t channel, CanMsg msg, uint32_t period, uint8_t *&res);

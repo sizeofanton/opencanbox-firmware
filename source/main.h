@@ -55,6 +55,8 @@ void canBusError(Can::CAN_INSTANCE instance);
 
 void uartRoutine();
 
+void systemReset();
+
 inline void _delay_ms(unsigned int ms);
 
 Config config;
