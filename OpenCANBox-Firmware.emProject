@@ -85,10 +85,6 @@
           <file file_name="source/util/crc8/crc8.cpp" />
           <file file_name="source/util/crc8/crc8.h" />
         </folder>
-        <folder Name="md4">
-          <file file_name="source/util/md4/md4.c" />
-          <file file_name="source/util/md4/md4.h" />
-        </folder>
         <file file_name="source/util/bit_operations.h" />
       </folder>
       <folder Name="data">
