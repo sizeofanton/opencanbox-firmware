@@ -2,7 +2,6 @@
 #include "LPC17xx.h"
 #include "../../util/bit_operations.h"
 #include <stdint.h>
-#include "../abstract/abstract_uart.h"
 
 #define SBIT_WORD_LENGTH  0x00u
 #define SBIT_DLAB         0x07u
@@ -16,7 +15,7 @@
 #define RBR_INT_EN_BIT    0x00u
 #define NVIC_INT_EN_BIT   0x05u
 
-class Uart: AbstractUart {
+class Uart {
   public:
     Uart(uint32_t baudrate);
     void uartTx(char byte);

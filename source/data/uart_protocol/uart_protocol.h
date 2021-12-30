@@ -5,7 +5,7 @@
 #include "../../hal/uart/uart.h"
 #include "../can_msg/can_msg.h"
 #include "../../hal/can/can.h"
-#include "../can_bitrate.h"
+#include "../../hal/can/can_bitrate.h"
 
 extern "C" void UartProtocolCallback_InfoRequest();
 extern "C" void UartProtocolCallback_DeviceDeactivation();

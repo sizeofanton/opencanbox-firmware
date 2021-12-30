@@ -52,16 +52,10 @@
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
       <folder Name="hal">
-        <folder Name="abstract">
-          <file file_name="source/hal/abstract/abstract_can.h" />
-          <file file_name="source/hal/abstract/abstract_led.h" />
-          <file file_name="source/hal/abstract/abstract_timer.h" />
-          <file file_name="source/hal/abstract/abstract_uart.h" />
-          <file file_name="source/hal/abstract/abstract_watchdog_timer.h" />
-        </folder>
         <folder Name="can">
           <file file_name="source/hal/can/can.cpp" />
           <file file_name="source/hal/can/can.h" />
+          <file file_name="source/hal/can/can_bitrate.h" />
         </folder>
         <folder Name="led">
           <file file_name="source/hal/led/led.cpp" />
@@ -108,7 +102,6 @@
           <file file_name="source/data/uart_protocol/uart_protocol.cpp" />
           <file file_name="source/data/uart_protocol/uart_protocol.h" />
         </folder>
-        <file file_name="source/data/can_bitrate.h" />
       </folder>
       <file file_name="source/config.h" />
       <file file_name="source/main.cpp" />

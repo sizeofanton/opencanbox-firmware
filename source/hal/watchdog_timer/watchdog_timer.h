@@ -1,8 +1,7 @@
 #include "LPC17xx.h"
 #include "../../util/bit_operations.h"
-#include "../abstract/abstract_watchdog_timer.h"
 
-class WatchdogTimer: public AbstractWatchdogTimer {
+class WatchdogTimer {
 
   private:
     LPC_WDT_TypeDef *watchdogTimer = (LPC_WDT_TypeDef *) LPC_WDT;

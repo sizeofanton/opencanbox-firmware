@@ -1,9 +1,9 @@
 #pragma once
-#include "../abstract/abstract_led.h"
 #include "../../util/bit_operations.h"
 #include "LPC17xx.h"
 #include "../../config.h"
-class Led: public AbstractLed {
+
+class Led {
 
   private:
     bool status = false;

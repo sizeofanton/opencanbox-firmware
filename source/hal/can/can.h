@@ -1,10 +1,10 @@
 #pragma  once
-#include "../abstract/abstract_can.h"
 #include "LPC17xx.h"
 #include "../../util/bit_operations.h"
-#include "../../data/can_bitrate.h"
+#include "../../data/can_msg/can_msg.h"
+#include "can_bitrate.h"
 
-class Can: public AbstractCan {
+class Can {
   public:
     enum CAN_INSTANCE {
         CAN1,
