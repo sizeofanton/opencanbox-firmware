@@ -1,10 +1,10 @@
 #include "can.h"
 
-Can::Can(Can::CAN_INSTANCE instance, BaudRate baud) {
+Can::Can(Can::CanInstance instance, BaudRate baud) {
   
   for (int i=26; i<32; i++) bit_clear(systemControl->PCLKSEL0, i);
  
-  if (instance == CAN1) {
+  if (instance == Can1) {
   bit_set(systemControl->PCONP, 13);
     for (int i=10; i< 14; i++) {
       bit_set(pinCon->PINSEL1, i);
@@ -117,17 +117,17 @@ void Can::changeBaudRate(BaudRate baudRate) {
   bit_set(*ISER, ISE_CAN);
 }
 
-void Can::setAcceptanceMode(CAN_ACCEPTANCE_MODE mode) {
+void Can::setAcceptanceMode(Can::CanAcceptanceMode mode) {
   switch (mode) {
-    case OFF_MODE:
+    case Can::CanAcceptanceMode::OffMode:
       bit_set(canAcf->AFMR, AFMR_OFF_MODE);
       bit_clear(canAcf->AFMR, AFMR_BYMASS_MODE);
       break;
-    case BYPASS_MODE:
+    case Can::CanAcceptanceMode::BypassMode:
       bit_set(canAcf->AFMR, AFMR_BYMASS_MODE);
       bit_clear(canAcf->AFMR, AFMR_OFF_MODE);
       break;
-    case OPERATING_MODE:
+    case Can::CanAcceptanceMode::OperatingMode:
       bit_clear(canAcf->AFMR, AFMR_BYMASS_MODE);
       bit_clear(canAcf->AFMR, AFMR_OFF_MODE);
       break;
@@ -135,7 +135,7 @@ void Can::setAcceptanceMode(CAN_ACCEPTANCE_MODE mode) {
   }
 }
 
-void Can::setEnabledInterrupts(CAN_INT enInt) {
+void Can::setEnabledInterrupts(Can::CanInterrupt enInt) {
   uint32_t ierValue = 0u;
   if (enInt.ReceiveInterrupt) bit_set(ierValue, RX_INTERRUPT_BIT);
   if (enInt.Transmit1Interrupt) bit_set(ierValue, TX_INTERRUPT_BIT);
@@ -151,8 +151,8 @@ void Can::setEnabledInterrupts(CAN_INT enInt) {
   can->IER = ierValue;
 }
 
-Can::CAN_INT Can::getInterruptSource() {
-  CAN_INT interruptSources = (CAN_INT){0};
+Can::CanInterrupt Can::getInterruptSource() {
+  CanInterrupt interruptSources = (CanInterrupt){0};
   if (is_bit_set(can->ICR, 0)) interruptSources.ReceiveInterrupt = 1u;
   if (is_bit_set(can->ICR, 1)) interruptSources.Transmit1Interrupt = 1u;
   if (is_bit_set(can->ICR, 2)) interruptSources.ErrorWarningInterrupt = 1u;

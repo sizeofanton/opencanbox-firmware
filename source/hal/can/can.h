@@ -6,18 +6,18 @@
 
 class Can {
   public:
-    enum CAN_INSTANCE {
-        CAN1,
-        CAN2
+    enum CanInstance {
+        Can1,
+        Can2
     };
 
-    enum CAN_ACCEPTANCE_MODE {
-      OFF_MODE,
-      BYPASS_MODE,
-      OPERATING_MODE
+    enum CanAcceptanceMode {
+      OffMode,
+      BypassMode,
+      OperatingMode
     };
 
-    struct CAN_INT {
+    struct CanInterrupt {
       uint8_t ReceiveInterrupt: 1;
       uint8_t Transmit1Interrupt: 1;
       uint8_t ErrorWarningInterrupt: 1;
@@ -32,17 +32,17 @@ class Can {
     };
 
   public:
-      Can(CAN_INSTANCE instance, BaudRate baud);
-      uint8_t canSend(CanMsg msg);
-      CanMsg  canRead();
-      void    setBaudRate(BaudRate baudRate);
-      void    changeBaudRate(BaudRate baudRate);
-      bool    canMsgAvailable();
-      void    setEnabledInterrupts(CAN_INT enInt);
-      CAN_INT getInterruptSource();
-      void    setAcceptanceMode(CAN_ACCEPTANCE_MODE mode);
-      void    setFilterSf(uint32_t *idBuffer, uint32_t len);
-      void    setFilterRangeSf(uint32_t idStart, uint32_t idStop);
+      Can(CanInstance instance, BaudRate baud);
+      uint8_t       canSend(CanMsg msg);
+      CanMsg        canRead();
+      void          setBaudRate(BaudRate baudRate);
+      void          changeBaudRate(BaudRate baudRate);
+      bool          canMsgAvailable();
+      void          setEnabledInterrupts(CanInterrupt enInt);
+      CanInterrupt  getInterruptSource();
+      void          setAcceptanceMode(CanAcceptanceMode mode);
+      void          setFilterSf(uint32_t *idBuffer, uint32_t len);
+      void          setFilterRangeSf(uint32_t idStart, uint32_t idStop);
 
    private: 
       LPC_SC_TypeDef      *systemControl  = (LPC_SC_TypeDef *) LPC_SC;

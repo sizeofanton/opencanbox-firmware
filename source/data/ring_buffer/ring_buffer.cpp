@@ -16,3 +16,7 @@ uint8_t RingBuffer::get() {
 bool RingBuffer::available() {
   return bytesAvailable > 0;
 }
+
+uint32_t RingBuffer::getAvailableSize() {
+  return bytesAvailable;
+}

@@ -32,8 +32,8 @@ Led ledCan2(Led::LED_CAN2);
 Led ledCan2Err(Led::LED_CAN2_ERROR); 
 SystemTickTimer systemTickTimer;
 Uart uart(Config::UART_BAUDRATE);
-Can can1(Can::CAN1, _100kbit);
-Can can2(Can::CAN2, _100kbit);
+Can can1(Can::Can1, _100kbit);
+Can can2(Can::Can2, _100kbit);
 WatchdogTimer watchdogTimer;
 UartProtocol uartProtocol;
 
@@ -42,16 +42,17 @@ TxTable can2TxTable;
 RxTable can1RxTable;
 RxTable can2RxTable;
 RingBuffer uartTxBuffer;
+RingBuffer uartRxBuffer;
 
 void initCanInterfaces();
 void setErrorLeds();
 
-void canReceiveMsg(Can::CAN_INSTANCE instance);
-void canWarning(Can::CAN_INSTANCE instance);
-void canDataOverrun(Can::CAN_INSTANCE instance);
-void canErrorPassive(Can::CAN_INSTANCE instance);
-void canArbitrationLost(Can::CAN_INSTANCE instance);
-void canBusError(Can::CAN_INSTANCE instance);
+void canReceiveMsg(Can::CanInstance instance);
+void canWarning(Can::CanInstance instance);
+void canDataOverrun(Can::CanInstance instance);
+void canErrorPassive(Can::CanInstance instance);
+void canArbitrationLost(Can::CanInstance instance);
+void canBusError(Can::CanInstance instance);
 
 void uartRoutine();
 

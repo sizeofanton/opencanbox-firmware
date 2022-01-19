@@ -46,8 +46,8 @@ Uart::Uart(uint32_t baudrate) {
 
   bit_clear(lpcUart0->LCR, (SBIT_DLAB)); // Clear DLAB after setting DLL, DLM
 
-  //bit_set(lpcUart0->IER, RBR_INT_EN_BIT);
-  //bit_set(*ISER, NVIC_INT_EN_BIT);
+  bit_set(lpcUart0->IER, RBR_INT_EN_BIT);
+  bit_set(*ISER, NVIC_INT_EN_BIT);
 }
 
 void Uart::uartTx(char byte) {

@@ -1,0 +1,66 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="" active_group="Breakpoints">
+  <Exceptions set="HardFault"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="OpenCanBoxFirmware"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Script Files"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;can"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;system_tick_timer"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;uart"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;watchdog_timer"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util;crc8"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;System Files"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="51" y="43" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="22" y="9" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/config.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="0" top="33" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/util/bit_operations.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/util/crc8/crc8.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/util/crc8/crc8.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/uart/uart.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/system_tick_timer/system_tick_timer.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/system_tick_timer/system_tick_timer.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/watchdog_timer/watchdog_timer.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/can/can_bitrate.h" selected="1" top="0" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="OpenCanBoxFirmware" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/source/nRF51442-eval-board/nRF/Device/Startup" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>

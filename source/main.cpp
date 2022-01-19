@@ -38,10 +38,10 @@ int main(void) {
 }
 
 void initCanInterfaces() {
-  can1.setAcceptanceMode(Can::BYPASS_MODE);
-  can2.setAcceptanceMode(Can::BYPASS_MODE);
+  can1.setAcceptanceMode(Can::CanAcceptanceMode::BypassMode);
+  can2.setAcceptanceMode(Can::CanAcceptanceMode::BypassMode);
 
-  Can::CAN_INT inEnStruct = (Can::CAN_INT) {0};
+  Can::CanInterrupt inEnStruct = (Can::CanInterrupt) {0};
   inEnStruct.ReceiveInterrupt = 1u;
   inEnStruct.ErrorWarningInterrupt = 1u;
   inEnStruct.DataOverrunInterrupt = 1u;
@@ -75,42 +75,46 @@ extern "C" void SysTick_Handler() {
   if (systemTickTimer.globalTicks % 500 == 0) ledCan2.turnOff();
 }
 
+extern "C" void UART0_IRQHandler() {
+  uartRxBuffer.put(uart.uartRx());
+}
+
 extern "C" void CAN_IRQHandler() {
   auto can1Interrupts = can1.getInterruptSource();
   auto can2Interrupts = can2.getInterruptSource();
 
-  if (can1Interrupts.ReceiveInterrupt) { canReceiveMsg(Can::CAN1); } 
+  if (can1Interrupts.ReceiveInterrupt) { canReceiveMsg(Can::Can1); } 
   else if (can1Interrupts.Transmit1Interrupt) {}
   else if (can1Interrupts.ErrorWarningInterrupt) {}
-  else if (can1Interrupts.DataOverrunInterrupt) { canDataOverrun(Can::CAN1); }
+  else if (can1Interrupts.DataOverrunInterrupt) { canDataOverrun(Can::Can1); }
   else if (can1Interrupts.WakeupInterrupt) {}
-  else if (can1Interrupts.ErrorPassiveInterrupt) { canErrorPassive(Can::CAN1); }
-  else if (can1Interrupts.ArbitrationLostInterrupt) { canArbitrationLost(Can::CAN1); }
-  else if (can1Interrupts.BusErrorInterrupt) { canBusError(Can::CAN1); }
+  else if (can1Interrupts.ErrorPassiveInterrupt) { canErrorPassive(Can::Can1); }
+  else if (can1Interrupts.ArbitrationLostInterrupt) { canArbitrationLost(Can::Can1); }
+  else if (can1Interrupts.BusErrorInterrupt) { canBusError(Can::Can1); }
   else if (can1Interrupts.IdReadyInterrupt) {}
   else if (can1Interrupts.Transmit2Interrupt) {}
   else if (can1Interrupts.Transmit3Interrupt) {}
 
-  if (can2Interrupts.ReceiveInterrupt) { canReceiveMsg(Can::CAN2); } 
+  if (can2Interrupts.ReceiveInterrupt) { canReceiveMsg(Can::Can2); } 
   else if (can2Interrupts.Transmit1Interrupt) {}
   else if (can2Interrupts.ErrorWarningInterrupt) {}
-  else if (can2Interrupts.DataOverrunInterrupt) { canDataOverrun(Can::CAN2); }
+  else if (can2Interrupts.DataOverrunInterrupt) { canDataOverrun(Can::Can2); }
   else if (can2Interrupts.WakeupInterrupt) {}
-  else if (can2Interrupts.ErrorPassiveInterrupt) { canErrorPassive(Can::CAN2); }
-  else if (can2Interrupts.ArbitrationLostInterrupt) { canArbitrationLost(Can::CAN2); }
-  else if (can2Interrupts.BusErrorInterrupt) { canBusError(Can::CAN2); }
+  else if (can2Interrupts.ErrorPassiveInterrupt) { canErrorPassive(Can::Can2); }
+  else if (can2Interrupts.ArbitrationLostInterrupt) { canArbitrationLost(Can::Can2); }
+  else if (can2Interrupts.BusErrorInterrupt) { canBusError(Can::Can2); }
   else if (can2Interrupts.IdReadyInterrupt) {}
   else if (can2Interrupts.Transmit2Interrupt) {}
   else if (can2Interrupts.Transmit3Interrupt) {}
 }
 
 // TODO REFACTOR - TOO BIG FUNCTION
-void canReceiveMsg(Can::CAN_INSTANCE instance) {
+void canReceiveMsg(Can::CanInstance instance) {
 
-  auto receivedMsg = instance == Can::CAN1 ? can1.canRead() : can2.canRead();
-  if (instance == Can::CAN1) ledCan1.toggle();
-  if (instance == Can::CAN2) ledCan2.toggle();
-  auto channel = instance == Can::CAN1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
+  auto receivedMsg = instance == Can::Can1 ? can1.canRead() : can2.canRead();
+  if (instance == Can::Can1) ledCan1.toggle();
+  if (instance == Can::Can2) ledCan2.toggle();
+  auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   uint32_t period = 0;
   
   if (channel == UartProtocol::CAN_CHANNEL1) {
@@ -149,44 +153,43 @@ void canReceiveMsg(Can::CAN_INSTANCE instance) {
 }
 
 
-void canDataOverrun(Can::CAN_INSTANCE instance) {
-  instance == Can::CAN1 ? errorWarningCan1 = true : errorWarningCan2 = true;
+void canDataOverrun(Can::CanInstance instance) {
+  instance == Can::Can1 ? errorWarningCan1 = true : errorWarningCan2 = true;
   uint8_t *dataPointer = nullptr;
-  auto channel = instance == Can::CAN1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
+  auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   auto size = uartProtocol.msgDataOverrunWarning(channel, dataPointer);
   for (int i=0; i<size; i++) uartTxBuffer.put(dataPointer[i]);
 }
 
-void canErrorPassive(Can::CAN_INSTANCE instance) {
-  instance == Can::CAN1 ? errorCan1 = true : errorCan2 = true;
+void canErrorPassive(Can::CanInstance instance) {
+  instance == Can::Can1 ? errorCan1 = true : errorCan2 = true;
   uint8_t *dataPointer = nullptr;
-  auto channel = instance == Can::CAN1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
+  auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   auto size = uartProtocol.msgPassiveError(channel, dataPointer);
   for (int i = 0; i < size; i++) uartTxBuffer.put(dataPointer[i]);
 }
 
-void canArbitrationLost(Can::CAN_INSTANCE instance) {
-  instance == Can::CAN1 ? errorCan1 = true : errorCan2 = true;
+void canArbitrationLost(Can::CanInstance instance) {
+  instance == Can::Can1 ? errorCan1 = true : errorCan2 = true;
   uint8_t *dataPointer = nullptr;
-  auto channel = instance == Can::CAN1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
+  auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   auto size = uartProtocol.msgArbitrationLost(channel, dataPointer);
   for (int i = 0; i < size; i++) uartTxBuffer.put(dataPointer[i]);
 }
 
-void canBusError(Can::CAN_INSTANCE instance) {
-  instance == Can::CAN1 ? errorCan1 = true : errorCan2 = true;
+void canBusError(Can::CanInstance instance) {
+  instance == Can::Can1 ? errorCan1 = true : errorCan2 = true;
   uint8_t *dataPointer = nullptr;
-  auto channel = instance == Can::CAN1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
+  auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   auto size = uartProtocol.msgBusError(channel, dataPointer);
   for (int i = 0; i < size; i++) uartTxBuffer.put(dataPointer[i]);
 }
 
 void uartRoutine() {
-  if (uart.byteAvailable()) uartProtocol.uartRoutine(uart.uartRx());
-  for (int i=0; i<10; i++) {
-    if(uartTxBuffer.available()) uart.uartTx(uartTxBuffer.get());
-    else break;
-  }
+  uint32_t availableRx = uartRxBuffer.getAvailableSize();
+  for (uint32_t i=0; i<availableRx; i++) uartProtocol.uartRoutine(uartRxBuffer.get());
+  uint32_t availableTx = uartTxBuffer.getAvailableSize();
+  for (uint32_t i=0; i<availableTx; i++) uart.uartTx(uartTxBuffer.get());
 }
 
 void systemReset() {
@@ -259,9 +262,9 @@ extern "C" void UartProtocolCallback_SetChannelBitrate(uint8_t channelId, uint8_
 extern "C" void UartProtocolCallback_SetChannelFilter(uint8_t channelId, uint32_t idLow, uint32_t idHigh) {
   if (channelId == UartProtocol::CAN_CHANNEL1) {
     can1.setFilterRangeSf(idLow, idHigh);
-    can1.setAcceptanceMode(Can::OPERATING_MODE);
+    can1.setAcceptanceMode(Can::CanAcceptanceMode::OperatingMode);
   } else if (channelId == UartProtocol::CAN_CHANNEL2) {
     can2.setFilterRangeSf(idLow, idHigh);
-    can2.setAcceptanceMode(Can::OPERATING_MODE);
+    can2.setAcceptanceMode(Can::CanAcceptanceMode::OperatingMode);
   }
 }

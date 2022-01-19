@@ -4,9 +4,10 @@
 class RingBuffer 
 {
   public:
-    void put(uint8_t e);
-    uint8_t get();
-    bool available();
+    void      put(uint8_t e);
+    uint8_t   get();
+    bool      available();
+    uint32_t  getAvailableSize();
 
   private:
     static const uint32_t RING_BUFFER_SIZE = 500;
