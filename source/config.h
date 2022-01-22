@@ -4,10 +4,10 @@
 //#define OPEN_CAN_BOX_0 
 
 // OpenCANBox 1
-//#define OPEN_CAN_BOX_1 
+#define OPEN_CAN_BOX_1 
 
 // OpenCANBox 1-M
-#define OPEN_CAN_BOX_2
+//#define OPEN_CAN_BOX_2
 
 class Config {
   public:

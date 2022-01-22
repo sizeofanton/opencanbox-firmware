@@ -1,4 +1,4 @@
-HOST_CXX = clang++
+HOST_CXX = g++
 
 
 all: \
@@ -132,7 +132,10 @@ Output/Debug/Exe/OpenCanBoxFirmware.elf:\
 tests: ring_buffer_test
 
 ring_buffer_test:
-	$(HOST_CXX) -lgtest -std=c++11 source/data/ring_buffer/ring_buffer.cpp tests/ring_buffer_test.cpp -o ring_buffer_test
-	chmod +x ring_buffer_test
-	./ring_buffer_test
-	-rm ring_buffer_test
+	$(HOST_CXX) -std=c++11 source/data/ring_buffer/ring_buffer.cpp -c -o ring_buffer.o
+	$(HOST_CXX) tests/ring_buffer_test.cpp -c -o ring_buffer_test.o
+	$(HOST_CXX) ring_buffer.o ring_buffer_test.o -lgtest -lgtest_main -lpthread -o ring_buffer_test
+	./ring_buffer_test.exe
+	-rm ring_buffer_test.exe
+	-rm ring_buffer_test.o
+	-rm ring_buffer.o

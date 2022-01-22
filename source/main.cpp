@@ -13,8 +13,8 @@ int main(void) {
   ledGc.turnOn();
 
   while (!hardwareActivated) {
-    if (uart.byteAvailable()) {
-      auto byte = uart.uartRx();
+    if (uartRxBuffer.available()) {
+      auto byte = uartRxBuffer.get();
       if (byte == UartProtocol::ACTIVATION_SYMBOL) codeCounter++;
       if (codeCounter >= UartProtocol::ACTIVATION_SYMBOL_NEEDED) hardwareActivated = true;
     }
