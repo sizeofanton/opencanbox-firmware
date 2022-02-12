@@ -27,6 +27,13 @@ class Led {
     unsigned int controlValue = 0;
     #endif
 
+    #ifdef OPEN_CAN_BOX_8CH
+    LPC_PINCON_TypeDef *pinConf = (LPC_PINCON_TypeDef*) LPC_PINCON;
+    LPC_GPIO_TypeDef *gpioConf1 = (LPC_GPIO_TypeDef*) LPC_GPIO1;
+    LPC_GPIO_TypeDef *gpioConf3 = (LPC_GPIO_TypeDef*) LPC_GPIO3;
+    unsigned int controlValue = 0;
+    #endif
+
 
   public:
 

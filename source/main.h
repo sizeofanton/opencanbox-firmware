@@ -26,10 +26,17 @@ bool errorWarningCan2 = false;
 bool errorCan2 = false;
 
 Led ledGc(Led::LED_GC);
+#ifdef OPEN_CAN_BOX_8CH
+Led ledCan2(Led::LED_CAN1);
+Led ledCan2Err(Led::LED_CAN1_ERROR);
+Led ledCan1(Led::LED_CAN2);
+Led ledCan1Err(Led::LED_CAN2_ERROR);
+#else
 Led ledCan1(Led::LED_CAN1);
 Led ledCan1Err(Led::LED_CAN1_ERROR);
 Led ledCan2(Led::LED_CAN2);
-Led ledCan2Err(Led::LED_CAN2_ERROR); 
+Led ledCan2Err(Led::LED_CAN2_ERROR);
+#endif
 SystemTickTimer systemTickTimer;
 Uart uart(Config::UART_BAUDRATE);
 Can can1(Can::Can1, _100kbit);

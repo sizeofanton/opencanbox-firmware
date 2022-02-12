@@ -5,12 +5,29 @@ int main(void) {
   systemTickTimer.setReloadValue(Config::SYSTICK_TIMER_RELOAD_VALUE);
   systemTickTimer.start();
   
-  ledCan1Err.turnOff();
-  ledCan2Err.turnOff();
-  ledCan1.turnOff();
-  ledCan2.turnOff();
+  ledCan1Err.turnOn();
+  ledCan2Err.turnOn();
+  ledCan1.turnOn();
+  ledCan2.turnOn();
 
   ledGc.turnOn();
+
+  CanMsg msg;
+  msg.id = 0x555;
+  msg.dlc = 8;
+  msg.extendedFrame = 0;
+  msg.rtr = 0;
+  for (int i=0; i<8; i++) msg.data[i] = 0x55;
+  while (true) {
+    can1.canSend(msg);
+    can2.canSend(msg);
+    for (int i=0; i<1000000; i++);
+    ledCan1.turnOn();
+    ledCan2.turnOn();
+    for (int i=0; i<1000000; i++);
+    ledCan1.turnOff();
+    ledCan2.turnOff();
+  }
 
   while (!hardwareActivated) {
     if (uartRxBuffer.available()) {

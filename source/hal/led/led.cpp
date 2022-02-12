@@ -23,6 +23,12 @@ Led::Led(Led::LED_INSTANCE instance) {
       bit_set(gpioConf3->FIODIR, 25u);
       controlValue = 1 << 25u;
       #endif
+      #ifdef OPEN_CAN_BOX_8CH
+      bit_clear(pinConf->PINSEL7, 18u);
+      bit_clear(pinConf->PINSEL7, 19u);
+      bit_set(gpioConf3->FIODIR, 25u);
+      controlValue = 1 << 25u;
+      #endif
       break;
 
 
@@ -40,6 +46,12 @@ Led::Led(Led::LED_INSTANCE instance) {
       controlValue = 1 << 26u;
       #endif
       #ifdef OPEN_CAN_BOX_2
+      bit_clear(pinConf->PINSEL7, 20u);
+      bit_clear(pinConf->PINSEL7, 21u);
+      bit_set(gpioConf3->FIODIR, 26u);
+      controlValue = 1 << 26u;
+      #endif
+      #ifdef OPEN_CAN_BOX_8CH
       bit_clear(pinConf->PINSEL7, 20u);
       bit_clear(pinConf->PINSEL7, 21u);
       bit_set(gpioConf3->FIODIR, 26u);
@@ -67,6 +79,12 @@ Led::Led(Led::LED_INSTANCE instance) {
       bit_set(gpioConf1->FIODIR, 16u);
       controlValue = 1u << 16;
       #endif
+      #ifdef OPEN_CAN_BOX_8CH
+      bit_clear(pinConf->PINSEL3, 4u);
+      bit_clear(pinConf->PINSEL3, 5u);
+      bit_set(gpioConf1->FIODIR, 18u);
+      controlValue = 1u << 18;
+      #endif
       break;
 
 
@@ -89,6 +107,12 @@ Led::Led(Led::LED_INSTANCE instance) {
       bit_set(gpioConf1->FIODIR, 15u);
       controlValue = 1u << 15;
       #endif 
+      #ifdef OPEN_CAN_BOX_8CH
+      bit_clear(pinConf->PINSEL3, 6u);
+      bit_clear(pinConf->PINSEL3, 7u);
+      bit_set(gpioConf1->FIODIR, 19u);
+      controlValue = 1u << 19;
+      #endif
       break;
 
 
@@ -111,7 +135,14 @@ Led::Led(Led::LED_INSTANCE instance) {
       bit_set(gpioConf1->FIODIR, 14u);
       controlValue = 1u << 14;
       #endif
+      #ifdef OPEN_CAN_BOX_8CH
+      bit_clear(pinConf->PINSEL3, 18u);
+      bit_clear(pinConf->PINSEL3, 19u);
+      bit_set(gpioConf1->FIODIR, 25u);
+      controlValue = 1u << 25;
+      #endif
       break;
+      
 
 
     default:
@@ -156,7 +187,27 @@ void Led::turnOn() {
     gpioConf1->FIOSET = 1u << 15;
   }
   #endif
-
+  #ifdef OPEN_CAN_BOX_8CH
+  if (instance == LED_GC) {
+    gpioConf1->FIOCLR = controlValue;
+  }
+  if (instance == LED_CAN1) {
+    gpioConf3->FIOCLR = 1u << 25;
+    gpioConf3->FIOSET = 1u << 26;
+  }
+  if (instance == LED_CAN2) {
+    gpioConf1->FIOCLR = 1u << 18;
+    gpioConf1->FIOSET = 1u << 19;
+  }
+  if (instance == LED_CAN1_ERROR) {
+    gpioConf3->FIOCLR = 1u << 26;
+    gpioConf3->FIOSET = 1u << 25;
+  }
+  if (instance == LED_CAN2_ERROR) {
+    gpioConf1->FIOCLR = 1u << 19;
+    gpioConf1->FIOSET = 1u << 18;
+  }
+  #endif
   status = true;
 }
 
@@ -193,6 +244,27 @@ void Led::turnOff() {
   }
   #endif
 
+  #ifdef OPEN_CAN_BOX_8CH
+  if (instance == LED_GC) {
+    gpioConf1->FIOSET = controlValue;
+  }
+  if (instance == LED_CAN1) {
+    gpioConf3->FIOSET = 1u << 26;
+    gpioConf3->FIOSET = 1u << 25;
+  }
+  if (instance == LED_CAN2) {
+    gpioConf1->FIOSET = 1u << 18;
+    gpioConf1->FIOSET = 1u << 19;
+  }
+  if (instance == LED_CAN1_ERROR) {
+    gpioConf3->FIOSET = 1u << 25;
+    gpioConf3->FIOSET = 1u << 26;
+  }
+  if (instance == LED_CAN2_ERROR) {
+    gpioConf1->FIOSET = 1u << 19;
+    gpioConf1->FIOSET = 1u << 18;
+  }
+  #endif
 
   status = false;
 }

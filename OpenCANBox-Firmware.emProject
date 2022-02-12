@@ -115,10 +115,12 @@
       </file>
     </folder>
     <configuration
+      Connection="USB 261009294"
       Name="Debug"
       STLport="No"
       arm_assembler_variant="gcc"
       arm_compiler_variant="gcc"
+      arm_target_interface_type="SWD"
       debug_type_file="$(StudioDir)/bin/STLport.xml"
       embOS2Proj="No"
       gcc_cplusplus_language_standard="gnu++11" />
