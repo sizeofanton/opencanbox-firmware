@@ -4,6 +4,7 @@ RxTable::RxTable() {
   for (int i = 0; i < RX_TABLE_SIZE; i++) {
     busy[i] = false;
     periods[i] = 0;
+    last_time_received[i] = 0;
   }
 }
 
@@ -29,7 +30,9 @@ RxTable::RetCode RxTable::add(uint32_t id, uint32_t sysTick) {
   }
   if (pos == -1) return NoSpace;
   ids[pos] = id;
-  periods[pos] = sysTick - periods[pos];
+  if (last_time_received[pos] == 0) last_time_received[pos] = sysTick;
+  periods[pos] = sysTick - last_time_received[pos];
+  last_time_received[pos] = sysTick;
   return Success;
 }
 

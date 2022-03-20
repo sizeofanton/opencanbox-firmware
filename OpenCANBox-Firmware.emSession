@@ -26,15 +26,8 @@
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Script Files"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;ring_buffer"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;can"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;led"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;system_tick_timer"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;uart"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;watchdog_timer"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;tx_table"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util;crc8"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;System Files"/>
  </Project>
  <Register1>
@@ -68,12 +61,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="40" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="1" top="21" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="6" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/config.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="53" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/uart/uart.cpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="28" useTextEdit="1" openedFrom="D:/source/opencanbox-firmware/source/hal/uart/uart.cpp" useBinaryEdit="0" left="0" path="source/hal/uart/uart.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/can/can.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="1" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="OpenCanBoxFirmware" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/source/nRF51442-eval-board/nRF/Device/Startup" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="OpenCanBoxFirmware" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/source/nRF51442-eval-board/nRF/Device/Startup" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
