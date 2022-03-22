@@ -9,9 +9,9 @@ int main(void) {
   ledCan2Err.turnOff();
   ledCan1.turnOn();
   ledCan2.turnOn();
-
   ledGc.turnOn();
-
+  ledOn.turnOn();
+  ledUsbTraffic.turnOn();
 
   while (!hardwareActivated) {
     if (uartRxBuffer.available()) {
@@ -74,10 +74,12 @@ extern "C" void SysTick_Handler() {
   if ( (systemTickTimer.globalTicks % 100 == 0) && hardwareActivated) ledGc.toggle();
   if (systemTickTimer.globalTicks % 500 == 0) ledCan1.turnOff();
   if (systemTickTimer.globalTicks % 500 == 0) ledCan2.turnOff();
+  if (systemTickTimer.globalTicks % 500 == 0) ledUsbTraffic.turnOn();
 }
 
 extern "C" void UART0_IRQHandler() {
   uartRxBuffer.put(uart.uartRx());
+  ledUsbTraffic.turnOff();
 }
 
 extern "C" void CAN_IRQHandler() {
@@ -110,7 +112,6 @@ extern "C" void CAN_IRQHandler() {
 }
 
 void canReceiveMsg(Can::CanInstance instance) {
-
   auto receivedMsg = instance == Can::Can1 ? can1.canRead() : can2.canRead();
   if (instance == Can::Can1) ledCan1.toggle();
   if (instance == Can::Can2) ledCan2.toggle();

@@ -26,16 +26,13 @@
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Script Files"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;can_msg"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;ring_buffer"/>
+  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;rx_table"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;can"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;led"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;system_tick_timer"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;uart"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;watchdog_timer"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;util;crc8"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;System Files"/>
  </Project>
  <Register1>
@@ -70,12 +67,11 @@
  </Watch4>
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="1" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="40" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="0" top="21" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="64" y="21" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/config.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="53" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/uart/uart.cpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="28" useTextEdit="1" openedFrom="D:/source/opencanbox-firmware/source/hal/uart/uart.cpp" useBinaryEdit="0" left="0" path="source/hal/uart/uart.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/can/can.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/can_msg/can_msg.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="33" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="0" top="13" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="22" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/rx_table/rx_table.hpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="33" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/rx_table/rx_table.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="12" y="22" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/led/led.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="40" y="85" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/led/led.cpp" selected="0" top="58" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="OpenCanBoxFirmware" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/source/nRF51442-eval-board/nRF/Device/Startup" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

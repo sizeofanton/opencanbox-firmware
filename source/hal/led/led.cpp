@@ -40,8 +40,17 @@ Led::Led(Led::LED_INSTANCE instance) {
       break;
 
     case LED_USB_TRAFFIC:
+      bit_clear(pinConf->PINSEL3, 2u);
+      bit_clear(pinConf->PINSEL3, 3u);
+      bit_set(gpioConf1->FIODIR, 17u);
+      controlValue = 1u << 17;
+    break;
 
-
+    case LED_ON:
+      bit_clear(pinConf->PINSEL3, 0u);
+      bit_clear(pinConf->PINSEL3, 1u);
+      bit_set(gpioConf1->FIODIR, 16u);
+      controlValue = 1u << 16;
     break;
       
     default:
@@ -50,54 +59,32 @@ Led::Led(Led::LED_INSTANCE instance) {
 }
 
 void Led::turnOn() {
-  if (instance == LED_GC) {
+  if (instance == LED_GC || instance == LED_CAN2 || instance == LED_CAN2_ERROR) {
     gpioConf1->FIOCLR = controlValue;
   }
-  else if (instance == LED_CAN1) {
-    gpioConf3->FIOCLR = 1u << 25;
-    gpioConf3->FIOSET = 1u << 26;
-  }
-  else if (instance == LED_CAN2) {
-    gpioConf1->FIOCLR = 1u << 18;
-    gpioConf1->FIOSET = 1u << 19;
-  }
-  else if (instance == LED_CAN1_ERROR) {
-    gpioConf3->FIOCLR = 1u << 26;
-    gpioConf3->FIOSET = 1u << 25;
-  }
-  else if (instance == LED_CAN2_ERROR) {
-    gpioConf1->FIOCLR = 1u << 19;
-    gpioConf1->FIOSET = 1u << 18;
-  }
   else if (instance == LED_USB_TRAFFIC) {
-
+    gpioConf1->FIOSET = 1u << 17;
   }
+  else if (instance == LED_ON) {
+    gpioConf1->FIOCLR = 1u << 16;
+  }
+  else gpioConf3->FIOCLR = controlValue;
+  
   status = true;
 }
 
 void Led::turnOff() {
-  if (instance == LED_GC) {
+  if (instance == LED_GC || instance == LED_CAN2 || instance == LED_CAN2_ERROR) {
     gpioConf1->FIOSET = controlValue;
   }
-  else if (instance == LED_CAN1) {
-    gpioConf3->FIOSET = 1u << 26;
-    gpioConf3->FIOSET = 1u << 25;
-  }
-  else if (instance == LED_CAN2) {
-    gpioConf1->FIOSET = 1u << 18;
-    gpioConf1->FIOSET = 1u << 19;
-  }
-  else if (instance == LED_CAN1_ERROR) {
-    gpioConf3->FIOSET = 1u << 25;
-    gpioConf3->FIOSET = 1u << 26;
-  }
-  else if (instance == LED_CAN2_ERROR) {
-    gpioConf1->FIOSET = 1u << 19;
-    gpioConf1->FIOSET = 1u << 18;
-  }
   else if (instance == LED_USB_TRAFFIC) {
-
+    gpioConf1->FIOCLR = 1u << 17;
   }
+  else if (instance == LED_ON) {
+    gpioConf1->FIOSET = 1u << 16;
+  }
+  else gpioConf3->FIOSET = controlValue;
+  
   status = false;
 }
 

@@ -31,6 +31,7 @@ Led ledCan2Err(Led::LED_CAN1_ERROR);
 Led ledCan1(Led::LED_CAN2);
 Led ledCan1Err(Led::LED_CAN2_ERROR);
 Led ledUsbTraffic(Led::LED_USB_TRAFFIC);
+Led ledOn(Led::LED_ON);
 
 SystemTickTimer systemTickTimer;
 Uart uart(Config::UART_BAUDRATE);

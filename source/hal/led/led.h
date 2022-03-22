@@ -19,7 +19,8 @@ class Led {
       LED_CAN2,
       LED_CAN2_ERROR,
       LED_GC,
-      LED_USB_TRAFFIC
+      LED_USB_TRAFFIC,
+      LED_ON
     };
     
     Led(LED_INSTANCE instance);
