@@ -5,12 +5,13 @@ int main(void) {
   systemTickTimer.setReloadValue(Config::SYSTICK_TIMER_RELOAD_VALUE);
   systemTickTimer.start();
   
-  ledCan1Err.turnOn();
-  ledCan2Err.turnOn();
+  ledCan1Err.turnOff();
+  ledCan2Err.turnOff();
   ledCan1.turnOn();
   ledCan2.turnOn();
 
   ledGc.turnOn();
+
 
   while (!hardwareActivated) {
     if (uartRxBuffer.available()) {
