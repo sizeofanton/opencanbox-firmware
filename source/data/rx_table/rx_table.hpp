@@ -20,6 +20,7 @@ class RxTable {
 
     static const int RX_TABLE_SIZE = 100;
     uint32_t ids[RX_TABLE_SIZE];
+    uint32_t lastTimeReceived[RX_TABLE_SIZE];
     uint32_t periods[RX_TABLE_SIZE];
     uint32_t busy[RX_TABLE_SIZE];
 };

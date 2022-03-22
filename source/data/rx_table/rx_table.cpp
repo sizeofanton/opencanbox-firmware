@@ -29,7 +29,9 @@ RxTable::RetCode RxTable::add(uint32_t id, uint32_t sysTick) {
   }
   if (pos == -1) return NoSpace;
   ids[pos] = id;
-  periods[pos] = sysTick - periods[pos];
+  if (lastTimeReceived[pos] == 0) lastTimeReceived[pos] = sysTick;
+  periods[pos] = sysTick - lastTimeReceived[pos];
+  lastTimeReceived[pos] = sysTick;
   return Success;
 }
 

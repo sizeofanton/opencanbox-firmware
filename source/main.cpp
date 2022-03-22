@@ -109,7 +109,6 @@ extern "C" void CAN_IRQHandler() {
   else if (can2Interrupts.Transmit3Interrupt) {}
 }
 
-// TODO REFACTOR - TOO BIG FUNCTION
 void canReceiveMsg(Can::CanInstance instance) {
 
   auto receivedMsg = instance == Can::Can1 ? can1.canRead() : can2.canRead();
@@ -147,7 +146,6 @@ void canReceiveMsg(Can::CanInstance instance) {
   }
 
   uint8_t *dataPointer = nullptr;
-  if (period != 0) period = period / 1000;
   auto size = uartProtocol.msgRxCan(channel, receivedMsg, period, dataPointer);
   for (int i=0; i<size; i++) uartTxBuffer.put(dataPointer[i]);
 
