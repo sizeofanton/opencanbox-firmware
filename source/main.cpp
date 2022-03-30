@@ -17,6 +17,11 @@ int main(void) {
       auto byte = uartRxBuffer.get();
       if (byte == UartProtocol::ACTIVATION_SYMBOL) codeCounter++;
       if (codeCounter >= UartProtocol::ACTIVATION_SYMBOL_NEEDED) hardwareActivated = true;
+      if (byte == 'O') {
+        uart.uartTx('\r');
+        can232Routine = true;
+        hardwareActivated = true;
+      }
     }
   }
   
@@ -24,6 +29,7 @@ int main(void) {
   watchdogTimer.start(Config::WATCHDOG_RELOAD_VALUE);
   #endif
   initCanInterfaces();
+  if (can232Routine) uartCan232Routine();
   while (true) {
     #ifndef DEBUG
     watchdogTimer.feed();
@@ -76,7 +82,7 @@ extern "C" void SysTick_Handler() {
 }
 
 extern "C" void UART0_IRQHandler() {
-  uartRxBuffer.put(uart.uartRx());
+  can232Routine ? uartCan232RxBuffer.put(uart.uartRx()): uartRxBuffer.put(uart.uartRx());
 }
 
 extern "C" void CAN_IRQHandler() {
@@ -113,6 +119,11 @@ void canReceiveMsg(Can::CanInstance instance) {
   auto receivedMsg = instance == Can::Can1 ? can1.canRead() : can2.canRead();
   if (instance == Can::Can1) ledCan1.toggle();
   if (instance == Can::Can2) ledCan2.toggle();
+  
+  if (can232Routine) {
+    can232UartProtocol.addMessageToQueu(receivedMsg);
+    return;
+  }
   auto channel = instance == Can::Can1 ? UartProtocol::CAN_CHANNEL1 : UartProtocol::CAN_CHANNEL2;
   uint32_t period = 0;
   
@@ -264,5 +275,14 @@ extern "C" void UartProtocolCallback_SetChannelFilter(uint8_t channelId, uint32_
   } else if (channelId == UartProtocol::CAN_CHANNEL2) {
     can2.setFilterRangeSf(idLow, idHigh);
     can2.setAcceptanceMode(Can::CanAcceptanceMode::OperatingMode);
+  }
+}
+
+
+void uartCan232Routine() {
+  while (true) {
+    if (uartCan232RxBuffer.available()) {
+      can232UartProtocol.uartRoutine(uartCan232RxBuffer.get());
+    }
   }
 }

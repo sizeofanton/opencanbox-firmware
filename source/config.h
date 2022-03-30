@@ -1,14 +1,5 @@
 #pragma once
 
-// OpenCANBox 1
-#define OPEN_CAN_BOX_1 
-
-// OpenCANBox 1-M
-//#define OPEN_CAN_BOX_2
-
-// OpenCANBox 8CH
-//#define OPEN_CAN_BOX_8CH
-
 class Config {
   public:
     static const int        HARDWARE_CODE   = 1;

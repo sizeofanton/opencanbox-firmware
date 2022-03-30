@@ -102,6 +102,10 @@
           <file file_name="source/data/uart_protocol/uart_protocol.cpp" />
           <file file_name="source/data/uart_protocol/uart_protocol.h" />
         </folder>
+        <folder Name="can232_uart_protocol">
+          <file file_name="source/data/can232_uart_protocol/can232_uart_protocol.cpp" />
+          <file file_name="source/data/can232_uart_protocol/can232_uart_protocol.h" />
+        </folder>
       </folder>
       <file file_name="source/config.h" />
       <file file_name="source/main.cpp" />
