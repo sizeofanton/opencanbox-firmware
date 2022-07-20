@@ -1,6 +1,6 @@
 #include "main.h"
 
-int main(void) {
+ int main(void) {
 
   systemTickTimer.setReloadValue(Config::SYSTICK_TIMER_RELOAD_VALUE);
   systemTickTimer.start();
@@ -193,7 +193,12 @@ void uartRoutine() {
 }
 
 void systemReset() {
-  NVIC_SystemReset();
+  can1TxTable.cleanAllMessages();
+  can2TxTable.cleanAllMessages();
+  can1RxTable.cleanAllMessages();
+  can2RxTable.cleanAllMessages();
+  if (!watchdogTimer.is_running) watchdogTimer.start(5);
+  while(true);
 }
 
 extern "C" void UartProtocolCallback_InfoRequest() {

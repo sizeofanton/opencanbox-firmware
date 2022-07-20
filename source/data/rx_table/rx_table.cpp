@@ -42,3 +42,11 @@ RxTable::RetCode RxTable::getPeriod(uint32_t id, uint32_t *period) {
   }
   return *period == 0 ? NoSuchId : Success;
 }
+
+RxTable::RetCode RxTable::cleanAllMessages() {
+  for (int i = 0; i < RX_TABLE_SIZE; i++) {
+    busy[i] = false;
+    periods[i] = 0;
+  }
+  return RetCode::Success;
+}

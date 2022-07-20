@@ -14,6 +14,7 @@ class RxTable {
     RxTable();
     RetCode   add(uint32_t id, uint32_t sysTick);
     RetCode   getPeriod(uint32_t id, uint32_t *period);
+    RetCode   cleanAllMessages();
 
   private:
     inline uint32_t  alreadyExist(uint32_t id);

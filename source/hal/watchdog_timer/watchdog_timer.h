@@ -10,7 +10,6 @@ class WatchdogTimer {
     const uint8_t ENABLE_MOD_BIT = 0;
     const uint8_t TIMEOUT_BIT = 2;
     
-
     const uint8_t FEED_CHAR0 = 0xAA;
     const uint8_t FEED_CHAR1 = 0x55;
 
@@ -18,5 +17,6 @@ class WatchdogTimer {
     WatchdogTimer();
     void start(uint32_t resetValue);
     void feed();
+    bool is_running = false;
 
 };

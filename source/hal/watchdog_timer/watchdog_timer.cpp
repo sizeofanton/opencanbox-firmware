@@ -11,6 +11,7 @@ void WatchdogTimer::start(uint32_t resetValue) {
   bit_set(watchdogTimer->WDMOD, RESET_MOD_BIT);
   bit_clear(watchdogTimer->WDMOD, TIMEOUT_BIT);
   feed();
+  is_running = true;
 }
 
 void WatchdogTimer::feed() {

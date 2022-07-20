@@ -9,6 +9,13 @@ TxTable::TxTable() {
 }
 
 TxTable::RetCode TxTable::add(CanMsg msg, uint32_t period) {
+
+  for (int i=0; i<TX_TABLE_SIZE; i++) {
+    if ((busy[i] == true) && (messages[i].id == msg.id)) {
+        return  AlreadyExist;
+    }
+  }
+
   auto freePosition = -1;
   for (int i=0; i<TX_TABLE_SIZE; i++) {
     if (busy[i] == false) {
@@ -59,7 +66,7 @@ TxTable::RetCode TxTable::proceedMessages(uint64_t systemTick, Can *can) {
   auto transmitted = 0;
   for (int i=0; i<TX_TABLE_SIZE; i++) {
     if (busy[i] == true) {
-      if (std::fabs(systemTick - lastTxTime[i]) >= periods[i]) {
+      if (ABS(systemTick - lastTxTime[i]) >= periods[i]) {
         auto ret = can->canSend(messages[i]);
         if (ret != 0) errors++;
         else transmitted++;
@@ -69,4 +76,13 @@ TxTable::RetCode TxTable::proceedMessages(uint64_t systemTick, Can *can) {
   }
   if (transmitted == 0) return NothingToTransmit;
   return errors == 0 ? Success : TxError;
+}
+
+TxTable::RetCode TxTable::cleanAllMessages() {
+  for (int i = 0; i < TX_TABLE_SIZE; i++) {
+    busy[i] = false;
+    periods[i] = 0;
+    lastTxTime[i] = 0;
+  }
+  return RetCode::Success;
 }

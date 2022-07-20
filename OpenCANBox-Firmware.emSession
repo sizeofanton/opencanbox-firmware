@@ -23,17 +23,6 @@
  <Project>
   <ProjectSessionItem path="OpenCanBoxFirmware"/>
   <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Script Files"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;data;rx_table"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;can"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;led"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;system_tick_timer"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;uart"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;Source Files;hal;watchdog_timer"/>
-  <ProjectSessionItem path="OpenCanBoxFirmware;OpenCanBoxFirmware;System Files"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/MSP;CPU/PSP;CPU/PRIMASK;CPU/BASEPRI;CPU/FAULTMASK;CPU/CONTROL;CPU/internal;CAN1/MOD;CAN1/CMR;CAN1/GSR;CAN1/ICR;CAN1/IER;CAN1/BTR;CAN1/EWL;CAN1/SR;CAN1/RFS;CAN1/RID;CAN1/RDA;CAN1/RDB;CAN1/TFI1;CAN1/TFI2;CAN1/TFI3;CAN1/TID1;CAN1/TID2;CAN1/TID3;CAN1/TDA1;CAN1/TDA2;CAN1/TDA3;CAN1/TDB1;CAN1/TDB2;CAN1/TDB3;CAN2/MOD;CAN2/CMR;CAN2/GSR;CAN2/ICR;CAN2/IER;CAN2/BTR;CAN2/EWL;CAN2/SR;CAN2/RFS;CAN2/RID;CAN2/RDA;CAN2/RDB;CAN2/TFI1;CAN2/TFI2;CAN2/TFI3;CAN2/TID1;CAN2/TID2;CAN2/TID3;CAN2/TDA1;CAN2/TDA2;CAN2/TDA3;CAN2/TDB1;CAN2/TDB2;CAN2/TDB3" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context;CAN1;CAN1/MOD;CAN1/GSR;CAN1/ICR;CAN1/EWL;CAN1/SR;CAN2;CAN2/MOD" name="OpenCanBoxFirmware" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -66,12 +55,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="1" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="33" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="0" top="13" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="22" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/rx_table/rx_table.hpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="33" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/rx_table/rx_table.cpp" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="12" y="22" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/led/led.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="40" y="85" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/hal/led/led.cpp" selected="0" top="58" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.cpp" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="24" y="38" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/main.h" selected="0" top="31" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/config.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="16" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/ring_buffer/ring_buffer.cpp" selected="0" top="0" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="14" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/tx_table/tx_table.cpp" selected="1" top="33" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="4" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="source/data/tx_table/tx_table.h" selected="0" top="0" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="OpenCanBoxFirmware" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/source/nRF51442-eval-board/nRF/Device/Startup" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

@@ -2,6 +2,8 @@
 #include "../can_msg/can_msg.h"
 #include "../../hal/can/can.h"
 
+#define ABS(N) ((N<0)?(-N):(N))
+
 class TxTable {
 public:
     enum RetCode {
@@ -18,9 +20,10 @@ public:
     RetCode remove(uint32_t id);
     RetCode edit(uint32_t id, CanMsg *msg, uint32_t period);
     RetCode proceedMessages(uint64_t systemTick, Can *can);
+    RetCode cleanAllMessages();
 
 private:
-    static const int TX_TABLE_SIZE = 50;
+    static const int TX_TABLE_SIZE = 250;
 
     CanMsg    messages[TX_TABLE_SIZE];
     uint32_t  periods[TX_TABLE_SIZE];
